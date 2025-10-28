@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Basic Audio Player</title>
+<style>
+  body { font-family: sans-serif; }
+  #audioPlayer { margin-top: 20px; }
+</style>
+</head>
+<body>
+
+  <h1>Basic Audio Player</h1>
+
+  <input type="file" id="audioFile" accept="audio/*">
+
+  <div id="audioPlayer" style="display: none;">
+    <audio id="myAudio" controls></audio>
+  </div>
+
+  <script>
+    const audioFileInput = document.getElementById('audioFile');
+    const audioPlayerDiv = document.getElementById('audioPlayer');
+    const myAudio = document.getElementById('myAudio');
+
+    audioFileInput.addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const objectURL = URL.createObjectURL(file);
+        myAudio.src = objectURL;
+        audioPlayerDiv.style.display = 'block';
+      } else {
+        audioPlayerDiv.style.display = 'none';
+        myAudio.src = '';
+      }
+    });
+  </script>
+
+</body>
+</html>
